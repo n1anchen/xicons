@@ -37,15 +37,10 @@ jobs:
           cache: 'pnpm'
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm run setup
 
       - name: Build utils packages
-        run: |
-          pnpm run build --filter @vicons/utils \
-            --filter @ricons/utils \
-            --filter @v2icons/utils \
-            --filter @xicons/utils \
-            --stream
+        run: pnpm run build:vercel
 
       - name: Run tests
         run: pnpm run test --filter @v2icons/utils
@@ -73,7 +68,7 @@ jobs:
           cache: 'pnpm'
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm run setup
 
       - name: Build xicons for site
         run: pnpm --filter xicons --stream run build:for-site
